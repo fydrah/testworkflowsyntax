@@ -1,0 +1,26 @@
+name: "Node test"
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: "NodeJS version"
+        default: 14
+        required: false
+        type: number
+      folder:
+        description: "Lambda function folder"
+        required: true
+        type: string
+
+jobs:
+  node-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.version }}
+      - name: Unit test
+        run: |
+          cd ${{ inputs.folder }}
+          npm test

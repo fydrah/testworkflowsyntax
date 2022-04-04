@@ -1,8 +1,9 @@
+name: "[DEV] MyLambda"
+
 env:
   LAMBDA_NAME: "MyLambda"
   LAMBDA_FOLDER: "folder1/MyLambda"
 
-name: "[DEV] ${LAMBDA_NAME}"
 
 on:
   push:
@@ -14,10 +15,6 @@ jobs:
   node-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: .github/workflows/test.yaml
         with:
-          version: 14
-      - run: |
-          cd ${{ env.LAMBDA_FOLDER }}
-          npm test
+          folder: ${{ env.LAMBDA_FOLDER }}
