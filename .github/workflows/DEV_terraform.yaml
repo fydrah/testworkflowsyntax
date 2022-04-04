@@ -22,19 +22,64 @@ jobs:
     - uses: hashicorp/setup-terraform@v1
 
     - name: terraform-init
+      id: terraform-init
       run: |
         terraform init \
+          -no-color \
           -backend=false
 
     - name: terraform-fmt
+      id: terraform-fmt
       run: |
         terraform fmt \
+          -no-color \
           -recursive \
           -check
 
     - name: terraform-validate
+      id: terraform-validate
       run: |
-        terraform validate
+        terraform validate \
+          -no-color
+
+    - name: find-comment
+      id: find-comment
+      uses: peter-evans/find-comment@v2
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        comment-author: "github-actions[bot]"
+        body-includes: Terraform Validation
+
+    - name: add-comment
+      id: add-comment
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        comment-id: ${{ steps.find-comment.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          # Terraform Validation
+
+          <details>
+          <summary>Expand init</summary>
+          ```
+          ${{ steps.terraform-init.outputs.stdout }}
+          ```
+          </details>
+
+          <details>
+          <summary>Expand fmt</summary>
+          ```
+          ${{ steps.terraform-fmt.outputs.stdout }}
+          ```
+          </details>
+
+          <details>
+          <summary>Expand validate</summary>
+          ```
+          ${{ steps.terraform-validate.outputs.stdout }}
+          ```
+          </details>
+        edit-mode: replace
 
   tf-plan-INT:
     needs: [tf-validate]
