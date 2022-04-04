@@ -61,23 +61,29 @@ jobs:
 
           <details>
           <summary>Expand init</summary>
+
           ```
           ${{ steps.terraform-init.outputs.stdout }}
           ```
+
           </details>
 
           <details>
           <summary>Expand fmt</summary>
+
           ```
           ${{ steps.terraform-fmt.outputs.stdout }}
           ```
+
           </details>
 
           <details>
           <summary>Expand validate</summary>
+
           ```
           ${{ steps.terraform-validate.outputs.stdout }}
           ```
+
           </details>
         edit-mode: replace
 

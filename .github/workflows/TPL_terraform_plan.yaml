@@ -62,8 +62,10 @@ jobs:
 
           <details>
           <summary>Expand plan</summary>
+
           ```
           ${{ steps.terraform-plan.outputs.stdout }}
           ```
+
           </details>
         edit-mode: replace
