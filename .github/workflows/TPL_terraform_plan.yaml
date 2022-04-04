@@ -56,7 +56,7 @@ jobs:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          ## [Terraform Plan]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) ${{ inputs.workspace }}
+          ## [Terraform Plan](${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB_REPOSITORY }}/actions/runs/${{ env.GITHUB_RUN_ID }}) ${{ inputs.workspace }}
 
           <details>
           <summary>Expand plan</summary>
