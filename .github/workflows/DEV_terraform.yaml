@@ -55,7 +55,7 @@ jobs:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          ## Terraform Validation [(Link)](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)
+          ## Terraform Validation [(Link)](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
           <details>
           <summary>Expand init</summary>
