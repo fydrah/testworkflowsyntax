@@ -12,6 +12,7 @@ jobs:
     uses: ./.github/workflows/TPL_terraform_deploy.yaml
     with:
       workspace: STG
+      folder: terraform
 
   # This will be blocked by "environment reviewers" GitHub Action feature
   tf-deploy-prd:
