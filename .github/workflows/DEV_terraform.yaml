@@ -7,7 +7,6 @@ on:
       - terraform/**
 
 env:
-  TF_CLI_ARGS: "-chdir=terraform/"
   TF_INPUT: "0"
   TF_IN_AUTOMATION: "true"
   TF_WORKSPACE: "INT"
@@ -23,20 +22,17 @@ jobs:
     - uses: hashicorp/setup-terraform@v1
 
     - name: terraform-init
-      id: terraform-init
       run: |
         terraform init \
           -backend=false
 
     - name: terraform-fmt
-      id: terraform-fmt
       run: |
         terraform fmt \
           -recursive \
           -check
 
     - name: terraform-validate
-      id: terraform-validate
       run: |
         terraform validate
 
