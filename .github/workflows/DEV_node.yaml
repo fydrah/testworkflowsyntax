@@ -15,4 +15,4 @@ jobs:
   node-test:
     uses: ./.github/workflows/test.yaml
     with:
-      folder: ${{ env.LAMBDA_FOLDER }}
+      folder: folder1/MyLambda
