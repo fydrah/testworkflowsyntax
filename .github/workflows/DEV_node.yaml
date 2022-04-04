@@ -2,7 +2,7 @@ env:
   LAMBDA_NAME: "MyLambda"
   LAMBDA_FOLDER: "folder1/${LAMBDA_NAME}"
 
-name: "[DEV] ${{ env.LAMBDA_NAME }}"
+name: "[DEV] ${LAMBDA_NAME}"
 
 on:
   push:
