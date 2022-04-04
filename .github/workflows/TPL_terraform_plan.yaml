@@ -13,13 +13,15 @@ on:
         type: string
 
 env:
-  TF_CLI_ARGS: "-chdir=${{ inputs.folder }}"
   TF_INPUT: "0"
   TF_IN_AUTOMATION: "true"
   TF_WORKSPACE: "${{ inputs.workspace }}"
 
 jobs:
   tf-plan:
+    defaults:
+      run:
+        working-directory: ${{ inputs.folder }}
     environment: "${{ inputs.workspace }}"
     runs-on: ubuntu-latest
     steps:
