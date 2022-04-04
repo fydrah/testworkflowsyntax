@@ -1,4 +1,4 @@
-name: "Node ${{ inputs.folder }}"
+name: "Node test"
 on:
   workflow_call:
     inputs:
