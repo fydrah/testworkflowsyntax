@@ -15,6 +15,6 @@ jobs:
   node-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: .github/workflows/test.yaml
+      - uses: ./.github/workflows/test.yaml
         with:
           folder: ${{ env.LAMBDA_FOLDER }}
