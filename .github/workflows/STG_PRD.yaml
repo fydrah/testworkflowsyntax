@@ -19,3 +19,4 @@ jobs:
     uses: ./.github/workflows/TPL_terraform_deploy.yaml
     with:
       workspace: PRD
+      folder: terraform
