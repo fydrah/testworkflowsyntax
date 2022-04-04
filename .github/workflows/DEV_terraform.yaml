@@ -7,6 +7,7 @@ on:
       - terraform/**
 
 env:
+  TF_CLI_ARGS: ""
   TF_INPUT: "0"
   TF_IN_AUTOMATION: "true"
   TF_WORKSPACE: "INT"
@@ -25,22 +26,19 @@ jobs:
       id: terraform-init
       run: |
         terraform init \
-          -no-color \
           -backend=false
 
     - name: terraform-fmt
       id: terraform-fmt
       run: |
         terraform fmt \
-          -no-color \
           -recursive \
           -check
 
     - name: terraform-validate
       id: terraform-validate
       run: |
-        terraform validate \
-          -no-color
+        terraform validate
 
     - name: find-comment
       id: find-comment
@@ -57,12 +55,12 @@ jobs:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          # Terraform Validation
+          ## Terraform Validation
 
           <details>
           <summary>Expand init</summary>
 
-          ```
+          ```diff
           ${{ steps.terraform-init.outputs.stdout }}
           ```
 
@@ -71,7 +69,7 @@ jobs:
           <details>
           <summary>Expand fmt</summary>
 
-          ```
+          ```diff
           ${{ steps.terraform-fmt.outputs.stdout }}
           ```
 
@@ -80,7 +78,7 @@ jobs:
           <details>
           <summary>Expand validate</summary>
 
-          ```
+          ```diff
           ${{ steps.terraform-validate.outputs.stdout }}
           ```
 

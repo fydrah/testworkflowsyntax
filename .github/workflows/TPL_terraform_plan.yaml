@@ -13,6 +13,7 @@ on:
         type: string
 
 env:
+  #TF_CLI_ARGS: "-no-color"
   TF_INPUT: "0"
   TF_IN_AUTOMATION: "true"
   TF_WORKSPACE: "${{ inputs.workspace }}"
@@ -31,14 +32,12 @@ jobs:
     - name: terraform-init
       id: terraform-init
       run: |
-        terraform init \
-          -no-color
+        terraform init
 
     - name: terraform-plan
       id: terraform-plan
       run: |
         terraform plan \
-          -no-color \
           -lock=false \
           -compact-warnings \
           -var-file=workspace-${{ inputs.workspace }}.tfvars
@@ -58,12 +57,12 @@ jobs:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          # Terraform Plan ${{ inputs.workspace }}
+          ## Terraform Plan ${{ inputs.workspace }}
 
           <details>
           <summary>Expand plan</summary>
 
-          ```
+          ```diff
           ${{ steps.terraform-plan.outputs.stdout }}
           ```
 
