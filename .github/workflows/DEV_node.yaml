@@ -8,7 +8,7 @@ on:
   push:
     paths:
       - '.github/workflows/**'
-      - '${{ env.LAMBDA_FOLDER }}/**.js'
+      - '${LAMBDA_FOLDER}/**.js'
 
 jobs:
   node-test:
