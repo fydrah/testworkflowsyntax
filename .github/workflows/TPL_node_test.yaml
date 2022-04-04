@@ -1,4 +1,4 @@
-name: "Node test"
+name: "[TPL] Node test"
 on:
   workflow_call:
     inputs:
@@ -14,13 +14,17 @@ on:
 
 jobs:
   node-test:
+    defaults:
+      run:
+        working-directory: ${{ inputs.folder }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.version }}
-      - name: Unit test
-        run: |
-          cd ${{ inputs.folder }}
-          npm test
+
+      - name: install
+        run: npm install
+      - name: test
+        run: npm test

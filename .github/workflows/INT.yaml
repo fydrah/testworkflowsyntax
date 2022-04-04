@@ -1,0 +1,16 @@
+name: "[INT] Deployment"
+on:
+  pull_request:
+    types:
+      - closed
+    path:
+      - folder1/**
+      - terraform/**
+
+jobs:
+  tf-deploy-int:
+    if: github.event.pull_request.merged == true
+    uses: ./.github/workflows/TPL_terraform_deploy.yaml
+    with:
+      workspace: INT
+      folder: terraform

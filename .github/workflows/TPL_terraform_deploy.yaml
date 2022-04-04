@@ -1,0 +1,43 @@
+name: "[TPL] Terraform deploy"
+on:
+  workflow_call:
+    inputs:
+      workspace:
+        description: "Terraform workspace"
+        default: "default"
+        required: false
+        type: string
+      folder:
+        description: "Terraform folder"
+        required: true
+        type: string
+
+env:
+  TF_CLI_ARGS: "-no-color"
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: "0"
+  TF_WORKSPACE: "${{ inputs.workspace }}"
+
+jobs:
+  tf-deploy:
+    defaults:
+      run:
+        working-directory: ${{ inputs.folder }}
+    environment: "${{ inputs.workspace }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+
+      - name: terraform-init
+        id: terraform-init
+        run: |
+          terraform init
+
+      - name: terraform-apply
+        id: terraform-apply
+        run: |
+          terraform apply \
+            -auto-approve \
+            -compact-warnings \
+            -var-file=workspace-${{ inputs.workspace }}.tfvars
