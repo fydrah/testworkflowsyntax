@@ -1,6 +1,6 @@
 env:
   LAMBDA_NAME: "MyLambda"
-  LAMBDA_FOLDER: "folder1/${LAMBDA_NAME}"
+  LAMBDA_FOLDER: "folder1/MyLambda"
 
 name: "[DEV] ${LAMBDA_NAME}"
 
