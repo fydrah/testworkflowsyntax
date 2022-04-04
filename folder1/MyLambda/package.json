@@ -1,0 +1,11 @@
+{
+  "name": "MyLambda",
+  "version": "1.0.0",
+  "description": "Titi goes to the candy store",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo 'This is a dummy test'"
+  },
+  "author": "",
+  "license": "None"
+}

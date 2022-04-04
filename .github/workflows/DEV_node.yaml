@@ -1,0 +1,21 @@
+name: "[DEV] ${{ env.LAMBDA_NAME }}"
+
+env:
+  LAMBDA_NAME: "MyLambda"
+  LAMBDA_FOLDER: "folder1/${{ env.LAMBDA_NAME }}"
+
+on:
+  push:
+    paths:
+      - '${{ env.LAMBDA_FOLDER }}/**.js'
+
+jobs:
+  node-test:
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          version: 14
+      - run: |
+          cd ${{ env.LAMBDA_FOLDER }}
+          npm test
