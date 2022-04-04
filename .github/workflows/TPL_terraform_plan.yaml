@@ -56,7 +56,7 @@ jobs:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          ## Terraform Plan ${{ inputs.workspace }} [(Link)](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_number }}?check_suite_focus=true)
+          ## Terraform Plan ${{ inputs.workspace }} [(Link)](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true)
 
           <details>
           <summary>Expand plan</summary>
