@@ -1,12 +1,13 @@
-name: "[DEV] ${{ env.LAMBDA_NAME }}"
-
 env:
   LAMBDA_NAME: "MyLambda"
   LAMBDA_FOLDER: "folder1/${{ env.LAMBDA_NAME }}"
 
+name: "[DEV] ${{ env.LAMBDA_NAME }}"
+
 on:
   push:
     paths:
+      - '.github/workflows/**'
       - '${{ env.LAMBDA_FOLDER }}/**.js'
 
 jobs:
