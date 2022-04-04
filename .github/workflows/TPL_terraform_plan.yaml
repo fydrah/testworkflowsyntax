@@ -23,7 +23,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ inputs.folder }}
-    environment: "${{ inputs.workspace }}"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -57,12 +56,12 @@ jobs:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          ## Terraform Plan ${{ inputs.workspace }}
+          ## [Terraform Plan]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) ${{ inputs.workspace }}
 
           <details>
           <summary>Expand plan</summary>
 
-          ```diff
+          ```
           ${{ steps.terraform-plan.outputs.stdout }}
           ```
 
