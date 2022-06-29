@@ -3,7 +3,7 @@ name: "[DEV] MyLambda"
 on:
   pull_request:
     paths:
-      - folder1/MyLambda/**
+      - 'folder1/MyLambda/**'
 
 jobs:
   unit-test:

@@ -3,8 +3,8 @@ name: "[DEV] Terraform"
 on:
   pull_request:
     paths:
-      - folder1/**
-      - terraform/**
+      - 'folder1/**'
+      - 'terraform/**'
 
 env:
   TF_CLI_ARGS: "-no-color"
@@ -89,18 +89,4 @@ jobs:
     uses: ./.github/workflows/TPL_terraform_plan.yaml
     with:
       workspace: INT
-      folder: terraform
-
-  tf-plan-STG:
-    needs: [tf-validate]
-    uses: ./.github/workflows/TPL_terraform_plan.yaml
-    with:
-      workspace: STG
-      folder: terraform
-
-  tf-plan-PRD:
-    needs: [tf-validate]
-    uses: ./.github/workflows/TPL_terraform_plan.yaml
-    with:
-      workspace: PRD
       folder: terraform
