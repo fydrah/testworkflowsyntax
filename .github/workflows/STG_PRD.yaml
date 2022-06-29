@@ -8,6 +8,12 @@ on:
       - terraform/**
 
 jobs:
+  tf-plan-PRD:
+    uses: ./.github/workflows/TPL_terraform_plan.yaml
+    with:
+      workspace: STG
+      folder: terraform
+
   tf-deploy-stg:
     uses: ./.github/workflows/TPL_terraform_deploy.yaml
     with:
@@ -15,8 +21,16 @@ jobs:
       folder: terraform
 
   # This will be blocked by "environment reviewers" GitHub Action feature
-  tf-deploy-prd:
+  tf-plan-prd:
     needs: [tf-deploy-stg]
+    uses: ./.github/workflows/TPL_terraform_plan.yaml
+    with:
+      workspace: PRD
+      folder: terraform
+
+  # This will be blocked by "environment reviewers" GitHub Action feature
+  tf-deploy-prd:
+    needs: [tf-plan-prd]
     uses: ./.github/workflows/TPL_terraform_deploy.yaml
     with:
       workspace: PRD
