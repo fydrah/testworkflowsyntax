@@ -10,7 +10,6 @@ env:
   TF_CLI_ARGS: "-no-color"
   TF_INPUT: "0"
   TF_IN_AUTOMATION: "true"
-  TF_WORKSPACE: "INT"
 
 jobs:
   tf-validate:
