@@ -11,6 +11,11 @@ on:
         description: "Terraform folder"
         required: true
         type: string
+      comment:
+        description: "Comment on PR"
+        required: false
+        type: boolean
+        default: true
 
 env:
   TF_CLI_ARGS: "-no-color"
@@ -42,6 +47,7 @@ jobs:
           -var-file=workspace-${{ inputs.workspace }}.tfvars
 
     - name: find-comment
+      if: ${{ inputs.comment }}
       id: find-comment
       uses: peter-evans/find-comment@v2
       with:
@@ -50,6 +56,7 @@ jobs:
         body-includes: Terraform Plan ${{ inputs.workspace }}
 
     - name: add-comment
+      if: ${{ inputs.comment }}
       id: add-comment
       uses: peter-evans/create-or-update-comment@v2
       with:

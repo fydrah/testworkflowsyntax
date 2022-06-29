@@ -13,6 +13,7 @@ jobs:
     with:
       workspace: STG
       folder: terraform
+      comment: false
 
   tf-deploy-stg:
     needs: [tf-plan-stg]
@@ -28,6 +29,7 @@ jobs:
     with:
       workspace: PRD
       folder: terraform
+      comment: false
 
   # This will be blocked by "environment reviewers" GitHub Action feature
   tf-deploy-prd:
