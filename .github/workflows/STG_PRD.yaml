@@ -3,9 +3,9 @@ on:
   push:
     tags:
       - v*.*.*
-    path:
-      - folder1/**
-      - terraform/**
+    paths:
+      - 'folder1/**'
+      - 'terraform/**'
 
 jobs:
   tf-plan-PRD:
