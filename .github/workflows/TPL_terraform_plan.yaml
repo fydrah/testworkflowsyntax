@@ -28,7 +28,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ inputs.folder }}
-    environment: "${{ inputs.workspace }}"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
