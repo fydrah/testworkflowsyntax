@@ -3,18 +3,19 @@ on:
   push:
     tags:
       - v*.*.*
-    path:
-      - folder1/**
-      - terraform/**
+    paths:
+      - 'folder1/**'
+      - 'terraform/**'
 
 jobs:
-  tf-plan-PRD:
+  tf-plan-stg:
     uses: ./.github/workflows/TPL_terraform_plan.yaml
     with:
       workspace: STG
       folder: terraform
 
   tf-deploy-stg:
+    needs: [tf-plan-stg]
     uses: ./.github/workflows/TPL_terraform_deploy.yaml
     with:
       workspace: STG
